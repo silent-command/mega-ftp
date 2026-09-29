@@ -113,7 +113,7 @@ static void draw_title(void)
 
 static void draw_keys(void)
 {
-  ui_line(UI_ROW_KEYS, "RETURN open U up G get P put D drive R list M mark F/B color HELP host", 0);
+  ui_line(UI_ROW_KEYS, "RETURN open U up G get P put D drive R list M mark MEGA-F/B color HELP host", 0);
 }
 
 static void draw_entry(unsigned char idx, unsigned char row)
@@ -363,15 +363,19 @@ static unsigned char browse(void)
       break;
     case 'd': case 'D': xfer_choose_drive(); draw_info(); break;
     case 'f': case 'F':
-      /* The text colour applies to what is drawn from now on, so redraw;
-       * the status row is left as it was, in the old colour, on purpose:
-       * it is the one line the user was reading. */
+      /* MEGA held, as every client binds the colors (2026-09-29); the
+       * plain letters do nothing. The text colour applies to what is
+       * drawn from now on, so redraw; the status row is left as it was,
+       * in the old colour, on purpose: it is the one line the user was
+       * reading. */
+      if (!(ui_last_mods & MOD_MEGA)) break;
       m65_screen_cycle_text_colour();
       draw_page();
       break;
     case 'b': case 'B':
       /* Background and border move together and stay identical, so the
        * screen reads as a single surface (the gopher client's rule). */
+      if (!(ui_last_mods & MOD_MEGA)) break;
       m65_screen_cycle_background();
       break;
     case 'm': case 'M': {
