@@ -75,7 +75,9 @@ def main():
         else:
             print(f"no {DISK} on the card yet, nothing to keep")
         run([m65, "-F"], check=False); time.sleep(2)   # reset again: a second card session straight after the first stalled twice (2026-09-29)
-        r = run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"del {DISK}", "-c", f"put {new} {DISK}"], check=False)
+        run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"del {DISK}"], check=False)   # its own session: a del and a put in one stalled the card (2026-09-29)
+        run([m65, "-F"], check=False); time.sleep(2)
+        r = run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"put {new} {DISK}"], check=False)
         if "in " not in r.stdout and "bytes" not in r.stdout:
             sys.exit(f"the upload did not report success:\n{r.stdout}{r.stderr}")
         print("deployed", image.name, "keeping", ", ".join(kept) if kept else "nothing")
