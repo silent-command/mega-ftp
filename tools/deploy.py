@@ -29,7 +29,12 @@ def tool(name):
 
 
 def run(args, check=True):
-    r = subprocess.run([str(a) for a in args], capture_output=True, text=True)
+    # bounded: a card session that stalls ends here instead of holding the
+    # port for good (2026-09-29, two uploads hung at 100% CPU for ten minutes)
+    try:
+        r = subprocess.run([str(a) for a in args], capture_output=True, text=True, timeout=300)
+    except subprocess.TimeoutExpired:
+        sys.exit(f"{' '.join(str(a) for a in args)}: no answer in 300 s; reset the machine before the next try")
     if check and r.returncode:
         sys.exit(f"{' '.join(str(a) for a in args)}\n{r.stdout}{r.stderr}")
     return r
@@ -69,6 +74,7 @@ def main():
                 print("not on the card's disk, so not carried:", ", ".join(absent))
         else:
             print(f"no {DISK} on the card yet, nothing to keep")
+        run([m65, "-F"], check=False); time.sleep(2)   # reset again: a second card session straight after the first stalled twice (2026-09-29)
         r = run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"del {DISK}", "-c", f"put {new} {DISK}"], check=False)
         if "in " not in r.stdout and "bytes" not in r.stdout:
             sys.exit(f"the upload did not report success:\n{r.stdout}{r.stderr}")
