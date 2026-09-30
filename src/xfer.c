@@ -43,7 +43,7 @@ unsigned char xfer_choose_drive(void)
 {
   unsigned char how;
 
-  ui_line(ROW_PROMPT, "Save to: 8 or 9 for that unit, or the name of a .D81 on the SD card to attach to unit 9", 0);
+  ui_line(ROW_PROMPT, "Save to: 8 or 9 for that unit, or a .D81 on the SD card to attach as unit 9", 0);
   if (xfer_drive && xfer_image[0]) strcpy(answer, xfer_image);
   else strcpy(answer, xfer_drive ? "9" : "8");
   if (!ui_read_line(UI_ROW_STATUS, "Drive: ", answer, sizeof answer - 1, 0) || !answer[0]) {
@@ -365,7 +365,7 @@ unsigned char xfer_put(void)
   unsigned int n;
   unsigned long sent = 0, shown = 0;
 
-  ui_line(ROW_PROMPT, "Send from: 8 or 9 (pick a file on that disk), or SD (a file on the SD card by name)", 0);
+  ui_line(ROW_PROMPT, "Send from: 8 or 9 to pick a file on that disk, or SD for a file on the SD card", 0);
   if (!ui_read_line(UI_ROW_STATUS, "From: ", from_s, sizeof from_s - 1, 0) || !from_s[0]) { ui_status("cancelled", 0); return 0; }
   upper(from_s);
   from_sd = !strcmp(from_s, "SD");
