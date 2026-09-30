@@ -14,7 +14,7 @@
 #include "xfer.h"
 #include "m65_exit.h"
 
-#define FTPC_VERSION "0.4.6"
+#define FTPC_VERSION "0.4.7"
 #define ROW_FIRST 2
 #define ROWS_PER_PAGE 20
 #define ROW_INFO 22
