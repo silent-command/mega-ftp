@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Puts bin/FTPC.D81 into net-tools on the MEGA65's SD card, keeping the FTPC.CFG the
+"""Puts bin/FTPC.D81 onto the MEGA65's SD card root, keeping the FTPC.CFG the
 client wrote on the disk already there (the bookmarks: host, port, user
 and directory). Replacing the disk image outright loses them, and this
 file said so for a long time without offering a way not to -- the SSH
@@ -54,7 +54,7 @@ def main():
         old, new = td / "old.d81", td / DISK
         shutil.copy(image, new)
         run([m65, "-F"], check=False); time.sleep(2)              # reset: mega65_ftp refuses a running program
-        run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"get {DISK} {old}"], check=False)
+        run([ftp, "-l", port, "-c", f"get {DISK} {old}"], check=False)
         kept, absent = [], []
         if old.exists() and old.stat().st_size == 819200:
             keep_dir = ROOT / "build" / "deploy"; keep_dir.mkdir(parents=True, exist_ok=True)
@@ -75,9 +75,9 @@ def main():
         else:
             print(f"no {DISK} on the card yet, nothing to keep")
         run([m65, "-F"], check=False); time.sleep(2)   # reset again: a second card session straight after the first stalled twice (2026-09-29)
-        run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"del {DISK}"], check=False)   # its own session: a del and a put in one stalled the card (2026-09-29)
+        run([ftp, "-l", port, "-c", f"del {DISK}"], check=False)   # its own session: a del and a put in one stalled the card (2026-09-29)
         run([m65, "-F"], check=False); time.sleep(2)
-        r = run([ftp, "-l", port, "-c", "cd net-tools", "-c", f"put {new} {DISK}"], check=False)
+        r = run([ftp, "-l", port, "-c", f"put {new} {DISK}"], check=False)
         if "in " not in r.stdout and "bytes" not in r.stdout:
             sys.exit(f"the upload did not report success:\n{r.stdout}{r.stderr}")
         print("deployed", image.name, "keeping", ", ".join(kept) if kept else "nothing")
