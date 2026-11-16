@@ -3,7 +3,7 @@
 An FTP client for the MEGA65 on mega-net: passive mode, anonymous or
 named login, a directory browser, get and put through attic RAM to a
 chosen drive, bookmarks in `FTPC.CFG`. Native mode, llvm-mos, 80x25,
-`-Oz`. Version in `src/ftpc.c` (`FTPC_VERSION`). 0BSD. Releases carry
+`-Oz`. Version in `src/ftpc.c` (`FTPC_VERSION`). Apache License 2.0. Releases carry
 `bin/FTPC.D81`.
 
 The platform modules under `src/platform/` (`m65_*`: screen, font,
