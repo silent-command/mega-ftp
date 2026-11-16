@@ -38,7 +38,7 @@ driver, `boot_prg` stages a copy at the root for the run; call
 source ../mega-net/tools/m65lib.sh
 python3 tools/deploy.py                            FTPC.D81 onto the card, carrying FTPC.CFG (the bookmarks) over; the only way to redeploy
 boot_prg ftpc.d81 ftpc 'ost:'                      the host screen ("Host:" renders as "?OST:")
-type_line '192.168.1.232'; type_line '2121'; type_line 'anonymous'; type_line 'x'
+type_line '192.168.1.251'; type_line '2121'; type_line 'anonymous'; type_line 'x'
 wait_for 'entr' 20                                 "N entries" or "1 entry"
 type_keys '~C'                                     back one level: up a directory, then the host screen, then BASIC
 ```
