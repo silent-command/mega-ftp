@@ -1,6 +1,7 @@
 #include "mega65/memory.h"
 #include "meganet.h"
 #include "m65_boot.h"
+#include "m65_exit.h"
 #include "ftp.h"
 #include "ui.h"
 #include "netutil.h"
@@ -17,7 +18,10 @@ unsigned char net_up(const char **err)
   unsigned char attempt, st;
 
   if (!m65_boot_load(err)) return 0;
-  meganet_call(MEGANET_INIT, 0, 0, 0, 0);
+  /* Launched from the Net-Tools menu, the controller is still running
+   * and its link up: INIT_WARM skips the reset and the PHY's 3.5 s
+   * (mega-net REQUIREMENTS.md 5.23). */
+  meganet_call(m65_net_init_entry(), 0, 0, 0, 0);
   for (attempt = 0; attempt < DHCP_ATTEMPTS; attempt++) {
     meganet_dhcp_start();
     ftp_frames = 0;
