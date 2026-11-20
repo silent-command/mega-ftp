@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Bookmarks: FTPC.CFG on the disk the client booted from, as the gopher
  * client keeps its list, so the file travels with the program. A line
  * "FTPC1", then four lines per entry: host, port, user, directory. No

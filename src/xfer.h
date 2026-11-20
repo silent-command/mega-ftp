@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Moving files between the server and a drive: the drive chooser, RETR
  * to a disk, STOR from one. Prompts use the info and status rows; the
  * caller redraws them afterwards. */

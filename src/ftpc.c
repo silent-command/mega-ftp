@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* MEGA65 FTP client: the browser. Connects, logs in, lists a directory
  * and lets the cursor move through it; RETURN enters a directory, U goes
  * up. Getting and putting files are the next steps (REQUIREMENTS.md 4). */

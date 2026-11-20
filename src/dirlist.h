@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The current directory listing: one entry per LIST line the server sent,
  * parsed into a name, a kind and a size. Filled during the transfer and
  * painted afterwards, so nothing writes the screen while the stack is

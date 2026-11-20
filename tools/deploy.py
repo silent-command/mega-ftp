@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Justin Cameron
+# SPDX-License-Identifier: Apache-2.0
 """Puts bin/FTPC.D81 onto the MEGA65's SD card root, keeping the FTPC.CFG the
 client wrote on the disk already there (the bookmarks: host, port, user
 and directory). Replacing the disk image outright loses them, and this

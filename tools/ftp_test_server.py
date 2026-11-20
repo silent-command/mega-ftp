@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Justin Cameron
+# SPDX-License-Identifier: Apache-2.0
 """A local FTP server for testing the client: anonymous, read and write,
 serving a directory of known files on port 2121 (no root needed).
 

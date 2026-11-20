@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* The FTP protocol over mega-net: a control connection on socket 0 and
  * passive data connections on socket 1. Every call returns promptly or
  * within a bounded wait paced on the frame counter; nothing here draws

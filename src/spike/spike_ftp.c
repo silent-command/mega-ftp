@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Step 2: the control connection and a passive listing. Connects to the
  * test server on the Mac, logs in anonymously, PWD, then LIST over a
  * passive connection and shows the lines. REQUIREMENTS.md 5.2. */

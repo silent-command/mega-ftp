@@ -1,3 +1,5 @@
+/* Copyright 2026 Justin Cameron
+ * SPDX-License-Identifier: Apache-2.0 */
 /* Step 1: can the client put a disk image from the SD card onto drive 9
  * and write a file to it? Prints the Hyppo version, attaches FTPTEST.D81
  * (a blank image put on the card for this), lists it, writes FTPTEST to
